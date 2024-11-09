@@ -5,6 +5,9 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import TabLayout from './components/layout';
 
+import HomeScreen from "./screens/HomeScreen";
+import LoginScreen from "./screens/LoginScreen";
+
 const Stack = createStackNavigator();
 
 export default function App() {
@@ -13,7 +16,17 @@ export default function App() {
     <>
     <StatusBar style="auto" />
     <NavigationContainer>
-      <Stack.Navigator>
+      <Stack.Navigator initialRouteName="Login">
+      <Stack.Screen
+          name="Login"
+          component={LoginScreen}
+          options={{ headerTitleAlign: "center" }}
+        />
+        <Stack.Screen
+          name="Home"
+          component={HomeScreen}
+          options={{ headerLeft: () => null, headerTitleAlign: "center" }}
+        />
         <Stack.Screen name="TabLayout" component={TabLayout} />
       </Stack.Navigator>
     </NavigationContainer>
