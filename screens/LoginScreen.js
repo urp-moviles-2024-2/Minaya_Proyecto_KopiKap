@@ -19,6 +19,7 @@ import { initializeApp } from "firebase/app";
 import { firebaseConfig } from "../firebase-config";
 
 import { useNavigation } from "@react-navigation/native";
+import HomeScreen from "./HomeScreen";
 
 
 const LoginScreen = () => {
@@ -94,7 +95,7 @@ const LoginScreen = () => {
               />
             </View>
             <TouchableOpacity
-              onPress={handleSignIn}
+              onPress={HomeScreen}
               style={[styles.button, { backgroundColor: "#1bae76" }]}
             >
               <Text style={styles.text}>Login</Text>

@@ -2,10 +2,14 @@ import { Button, StyleSheet, Text, View } from "react-native";
 import React, { useLayoutEffect } from "react";
 import { getAuth, signOut } from "firebase/auth";
 //import { useNavigation } from "@react-navigation/native";
+import { createStackNavigator } from '@react-navigation/stack';
+import TabLayout from '../components/layout';
+
+const Stack = createStackNavigator();
 
 const HomeScreen = ({ route, navigation }) => {
-  const email = route.params.email;
-  const auth = getAuth();
+ /* const email = route.params.email;
+  const auth = getAuth();*/
   //const navigation = useNavigation();
 
   const logoutHandler = () => {
@@ -19,11 +23,14 @@ const HomeScreen = ({ route, navigation }) => {
       });
   };
 
+
   return (
     <View style={styles.container}>
-      <Text>Welcome {email}</Text>
+      
+      <Text>Welcome </Text>
 
       <Button title="Logout" onPress={logoutHandler} />
+      <Text>Home Screen</Text>
     </View>
   );
 };
