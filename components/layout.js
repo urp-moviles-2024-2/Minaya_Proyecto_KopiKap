@@ -1,10 +1,11 @@
 import * as React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { Ionicons } from '@expo/vector-icons';
+import { Ionicons, SimpleLineIcons } from '@expo/vector-icons';
 import { StyleSheet, Text, View } from 'react-native'
 import HomeScreen from '../screens/HomeScreen';
 //import SettingsScreen from '../screens/SettingsScreen';
 import FavouritesScreen from '../screens/FavouritesScreen';
+import OrderScreen from '../screens/MyCupScreen';
 
 const Tab = createBottomTabNavigator();
 
@@ -12,17 +13,38 @@ export default function TabLayout() {
   return (
     <Tab.Navigator
       screenOptions={{
-        tabBarActiveTintColor: '#1bae76',
+        tabBarActiveTintColor: '#ffffff',
+        tabBarInactiveTintColor: 'black',
         tabBarShowLabel: false, // Hide the labels of all tabs
+        tabBarStyle: {
+          position: 'absolute', // Asegura que la barra se pueda mover
+          bottom: 30, // Ajusta la distancia desde abajo
+          left: 20,   // Opcional, para personalizar los bordes
+          right: 20,  // Opcional, para personalizar los bordes
+          borderRadius: 15, // Redondea los bordes de la barras
+          height: 65, // Ajusta la altura de la barra
+          
+        },
+        tabBarActiveBackgroundColor: '#1bae76'
       }}
     >
       <Tab.Screen
-        name="HOLA"
+        name="Home"
         component={HomeScreen}
         options={{
           tabBarShowLabel: false,
           tabBarIcon: ({ color, focused }) => (
-            <Ionicons name={focused ? 'home-sharp' : 'home-outline'} color={color} size={24} />
+            <Ionicons name={focused ? 'home-outline' : 'home-outline'} color={focused ? color : 'black'} size={24} />
+          ),
+          
+        }}
+      />
+      <Tab.Screen
+        name="Coffee"
+        component={OrderScreen}
+        options={{
+          tabBarIcon: ({ color, focused }) => (
+            <SimpleLineIcons name={focused ? 'cup' : 'cup'} color={focused ? color : 'black'} size={24} />
           ),
         }}
       />
@@ -32,18 +54,28 @@ export default function TabLayout() {
         component={FavouritesScreen}
         options={{
           tabBarIcon: ({ color, focused }) => (
-            <Ionicons name={focused ? 'heart-sharp' : 'heart-outline'} color={color} size={24} />
+            <Ionicons name={focused ? 'heart-outline' : 'heart-outline'} color={focused ? color : 'black'} size={24} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Favour"
+        component={FavouritesScreen}
+        options={{
+          tabBarIcon: ({ color, focused }) => (
+            <Ionicons name={focused ? 'notifications-outline' : 'notifications-outline'} color={focused ? color : 'black'} size={24} />
           ),
         }}
       />
     </Tab.Navigator>
   );
 }
-/*
+
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    padding: 16,
+    backgroundColor: 'black',
   },
-});*/
+});

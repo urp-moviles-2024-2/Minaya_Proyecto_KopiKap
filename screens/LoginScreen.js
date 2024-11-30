@@ -101,7 +101,7 @@ const LoginScreen = () => {
               <Text style={styles.text}>Login</Text>
             </TouchableOpacity>
             <TouchableOpacity
-              onPress={handleCreateAccount}
+              onPress={() => navigation.navigate("TabLayout")}
               style={[styles.button, { backgroundColor: "#6792F090" }]}
             >
               <Text style={styles.text}>Create Account</Text>
