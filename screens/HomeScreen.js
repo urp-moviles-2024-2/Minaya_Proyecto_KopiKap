@@ -10,10 +10,14 @@ import TabLayout from '../components/layout';
 
 
 const products = [
-  { id: 1, name: 'Cappuccino Classic', price: 45.13, image: 'https://via.placeholder.com/100' },
-  { id: 2, name: 'Cappuccino Chiaro', price: 64.53, image: 'https://via.placeholder.com/100' },
-  { id: 3, name: 'Cappuccino Scuro', price: 75.50, image: 'https://via.placeholder.com/100' },
-  { id: 4, name: 'Cappuccino with Chocolate', price: 75.50, image: 'https://via.placeholder.com/100' },
+  { id: 1, name: 'Cappuccino', subname: ' Classic', price: 45.13, image: 'https://via.placeholder.com/100' },
+  { id: 2, name: 'Cappuccino', subname: ' Chiaro', price: 64.53, image: 'https://via.placeholder.com/100' },
+  { id: 3, name: 'Cappuccino', subname: ' Scuro', price: 75.50, image: 'https://via.placeholder.com/100' },
+  { id: 4, name: 'Cappuccino', subname: ' with Chocolate', price: 75.50, image: 'https://via.placeholder.com/100' },
+  { id: 1, name: 'Macchiato', subname: ' Classic', price: 45.13, image: 'https://via.placeholder.com/100' },
+  { id: 2, name: 'Macchiato', subname: ' Chiaro', price: 64.53, image: 'https://via.placeholder.com/100' },
+  { id: 3, name: 'Macchiato', subname: ' Scuro', price: 75.50, image: 'https://via.placeholder.com/100' },
+  { id: 4, name: 'Macchiato', subname: ' with Chocolate', price: 75.50, image: 'https://via.placeholder.com/100' },
 ];
 
 const HomeScreen = ({ route, navigation }) => {
@@ -79,9 +83,15 @@ const HomeScreen = ({ route, navigation }) => {
       {/* Coffee List */}
       <ScrollView style={styles.scrollView}>
         <View style={styles.productsContainer}>
-          {products.map((product) => (
-            <ProductCard key={product.id} product={product} onAddToCart={handleAddToCart} />
-          ))}
+        {products
+      .filter((product) => product.name === selectedType) // Filtra los productos por tipo seleccionado
+      .map((product) => (
+        <ProductCard
+          key={product.id}
+          product={product}
+          onAddToCart={handleAddToCart}
+        />
+      ))}
         </View>
       </ScrollView>
 

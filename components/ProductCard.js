@@ -7,7 +7,7 @@ const ProductCard = ({ product, onAddToCart }) => {
     <View style={styles.card}>
       <Image source={{ uri: product.image }} style={styles.image} />
       <Text style={styles.name}>{product.name}</Text>
-      
+      <Text style={styles.subname}>{product.subname}</Text>
       <Text style={styles.price}>₱ {product.price}</Text>
       <TouchableOpacity style={styles.addButton} onPress={() => onAddToCart(product)}>
         <Ionicons name="add-circle" size={24} color="#22A45D" />
@@ -32,6 +32,12 @@ const styles = StyleSheet.create({
   },
   name: {
     fontSize: 16,
+    fontWeight: 'bold',
+    marginTop: 8,
+  },
+  subname: {
+    fontSize: 14,
+    color: '#999',
     fontWeight: 'bold',
     marginVertical: 8,
   },
