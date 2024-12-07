@@ -11,7 +11,7 @@ const InicioScreen = ({navigation}) => {
       <Text style={[styles.text, {color: "#ffffff", fontSize: 35, margin: 20, flex:1}]}>Elevate your coffee 
         experience at 
         Kopi Kap</Text>
-      <Text style={{color:'#ffffff'}}>Where coffe meets comfort. </Text>
+      <Text style={{color:'#ffffff', margin: 20, flex:1, fontSize: 25,}}>Where coffe meets comfort. </Text>
       </View>
       <TouchableOpacity style={[styles.button, { backgroundColor: "#ffffff" }]}
         title="Go to Login"

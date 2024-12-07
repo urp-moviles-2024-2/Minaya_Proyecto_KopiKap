@@ -1,10 +1,21 @@
+import { initializeApp } from 'firebase/app';
+import { getFirestore, collection, addDoc } from 'firebase/firestore';
+
 export const firebaseConfig = {
-  apiKey: "AIzaSyDFTvA69ebKbuqG2thDbQiyWho3RJpGO3g",
+  apiKey: "AIzaSyD0Ur90u1tFTLwmXP-9R_EwED7lMN3a4Zk",
   authDomain: "fir-101-222d2.firebaseapp.com",
-  databaseURL: "https://fir-101-222d2-default-rtdb.firebaseio.com",
-  projectId: "fir-101-222d2",
-  storageBucket: "fir-101-222d2.firebasestorage.app",
-  messagingSenderId: "1014980572357",
-  appId: "1:1014980572357:web:4e447b669773002d222cac",
-  measurementId: "G-D03DVLS205"
+  databaseURL: "https://kopikap-8bfec-default-rtdb.firebaseio.com",
+  projectId: "kopikap-8bfec",
+  storageBucket: "kopikap-8bfec.firebasestorage.app",
+  messagingSenderId: "MSG_SENDER",
+  appId: "1:575753345682:android:eb490a36804d5eafada44b",
+  measurementId: "MEASUREMENT_ID"
 };
+
+// Inicializa Firebase
+const app = initializeApp(firebaseConfig);
+
+// Inicializa Firestore
+const db = getFirestore(app);
+
+export { db, collection, addDoc };
