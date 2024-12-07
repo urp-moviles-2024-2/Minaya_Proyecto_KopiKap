@@ -88,22 +88,6 @@ const LoginScreen = ({navigation}) => {
             />
             <Text style={styles.title}>{isRegistering ? "Register" : "Login"}</Text>
             <View>
-                {isRegistering && (
-              <>
-                <TextInput
-                  placeholder="First Name"
-                  value={firstName}
-                  onChangeText={setFirstName}
-                  style={styles.input}
-                />
-                <TextInput
-                  placeholder="Last Name"
-                  value={lastName}
-                  onChangeText={setLastName}
-                  style={styles.input}
-                />
-              </>
-              )}
               <TextInput
                placeholder="Email"
                  value={email}

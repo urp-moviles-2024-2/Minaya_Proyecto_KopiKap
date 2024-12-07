@@ -1,9 +1,12 @@
-import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import React, {useContext} from 'react';
+import { View, Text, FlatList, TouchableOpacity, StyleSheet } from 'react-native';
 import HeaderComponent from '../components/Header';
+import { CartContext } from '../store/cart-context';
 import OrderSummary from '../components/OrderSummary';
-
+import CartItemCard from '../components/CartItemCard';
+import ProductCard from '../components/ProductCard';
 const OrderScreen = ({ navigation }) => {
+  const { cart } = useContext(CartContext);
   const handlePlaceOrder = () => {
     console.log('Order Placed!');
   };
@@ -11,6 +14,10 @@ const OrderScreen = ({ navigation }) => {
   const handleTabChange = (tab) => {
     if (tab === 'home') navigation.navigate('HomeScreen');
   };
+
+  const totalPrice = cart.reduce((sum, item) => sum + item.price, 0);
+  const deliveryFee = 10;
+  const totalPayment = totalPrice + deliveryFee ;
 
   return (
     <View style={styles.container}>
@@ -22,16 +29,23 @@ const OrderScreen = ({ navigation }) => {
           <TouchableOpacity style={styles.editButton}>
             <Text style={styles.editButtonText}>Edit Address</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.addButton}>
-            <Text style={styles.addButtonText}>Add Note</Text>
-          </TouchableOpacity>
         </View>
       </View>
+      <View style={styles.container}>
+      <FlatList
+        data={cart}
+        keyExtractor={(item) => item.id}
+        renderItem={({ item }) => (
+          <CartItemCard
+            product={item}
+          />
+        )}
+      />
+      </View>
       <OrderSummary
-        price={64.53}
-        deliveryFee={10.00}
-        discount={20.00}
-        total={74.53}
+        price={totalPrice}
+        deliveryFee={deliveryFee}
+        total={totalPayment}
       />
       <TouchableOpacity style={styles.placeOrderButton} onPress={handlePlaceOrder}>
         <Text style={styles.placeOrderText}>Place Order</Text>
@@ -42,7 +56,7 @@ const OrderScreen = ({ navigation }) => {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    display: 'flex',
     backgroundColor: '#F5F5F5',
   },
   deliveryContainer: {

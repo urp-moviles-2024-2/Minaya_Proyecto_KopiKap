@@ -2,9 +2,11 @@ import React, { useContext } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { AuthContext } from '../store/auth-context';
+import { useNavigation } from '@react-navigation/native';
 
 const HeaderComponent = ({ title, onMenuPress, onProfilePress }) => {
   const { logout } = useContext(AuthContext);
+  const navigation = useNavigation();
 
   return (
     <View style={styles.header}>
@@ -13,9 +15,6 @@ const HeaderComponent = ({ title, onMenuPress, onProfilePress }) => {
       </TouchableOpacity>
       <Text style={styles.title}>{title}</Text>
       <View style={styles.rightIcons}>
-        <TouchableOpacity onPress={onProfilePress}>
-          <Ionicons name="person-circle-outline" size={24} color="white" />
-        </TouchableOpacity>
         <TouchableOpacity onPress={() => logout(navigation)}>
           <Ionicons name="log-out-outline" size={24} color="white" />
         </TouchableOpacity>
