@@ -15,7 +15,7 @@ const ProductCard = ({ product, onAddToCart }) => {
     <Text style={styles.name}>{product.name}</Text>
     <Text style={styles.subname}>{product.subname}</Text>
     <Text style={styles.price}>₱ {product.price}</Text>
-    <TouchableOpacity style={styles.addButton} onPress={handlePress}>
+    <TouchableOpacity style={styles.addButton} onPress={handlePress} testID="add-circle-button">
       <Ionicons name="add-circle" size={24} color="#22A45D" />
     </TouchableOpacity>
   </View>
