@@ -6,12 +6,13 @@ import HomeScreen from '../screens/HomeScreen';
 //import SettingsScreen from '../screens/SettingsScreen';
 import FavouritesScreen from '../screens/FavouritesScreen';
 import OrderScreen from '../screens/MyCupScreen';
+import { AuthContext } from '../store/auth-context';
 
 const Tab = createBottomTabNavigator();
 
 export default function TabLayout() {
   return (
-    <Tab.Navigator
+    <Tab.Navigator 
       screenOptions={{
         tabBarActiveTintColor: '#ffffff',
         tabBarInactiveTintColor: 'black',
@@ -25,7 +26,8 @@ export default function TabLayout() {
           height: 65, // Ajusta la altura de la barra
           
         },
-        tabBarActiveBackgroundColor: '#1bae76'
+        tabBarActiveBackgroundColor: '#1bae76',
+        headerShown: false,
       }}
     >
       <Tab.Screen
@@ -63,7 +65,13 @@ export default function TabLayout() {
         component={FavouritesScreen}
         options={{
           tabBarIcon: ({ color, focused }) => (
-            <Ionicons name={focused ? 'notifications-outline' : 'notifications-outline'} color={focused ? color : 'black'} size={24} />
+            
+            <Ionicons name={focused ? 'notifications-outline' : 'notifications-outline'} color={focused ? color : 'black'} size={24}
+            style={{
+              backgroundColor: focused ? '#1bae76' : 'transparent', // Fondo verde en el ícono activo
+              borderRadius: 10, // Redondea las esquinas del ícono
+              padding: 5, // Agrega un pequeño padding al ícono
+            }} />
           ),
         }}
       />

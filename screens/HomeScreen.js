@@ -95,10 +95,7 @@ const HomeScreen = ({ route, navigation }) => {
         </View>
       </ScrollView>
 
-      <Text>Welcome </Text>
 
-      <Button title="Logout" onPress={logoutHandler} />
-      <Text>Home Screen</Text>
     </View>
     </View>
   );
