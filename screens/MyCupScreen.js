@@ -1,5 +1,5 @@
 import React, {useContext} from 'react';
-import { View, Text, FlatList, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, FlatList, Button, TouchableOpacity, StyleSheet } from 'react-native';
 import HeaderComponent from '../components/Header';
 import { CartContext } from '../store/cart-context';
 import OrderSummary from '../components/OrderSummary';
@@ -15,13 +15,15 @@ const OrderScreen = ({ navigation }) => {
     if (tab === 'home') navigation.navigate('HomeScreen');
   };
 
-  const totalPrice = cart.reduce((sum, item) => sum + item.price, 0);
+  const totalPrice = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
   const deliveryFee = 10;
-  const totalPayment = totalPrice + deliveryFee ;
+  const discount = 0; // Example discount
+  const totalPayment = totalPrice + deliveryFee - discount;
 
   return (
     <View style={styles.container}>
       <HeaderComponent title="My Cup" />
+      <View style={styles.homecontainer}>
       <View style={styles.deliveryContainer}>
         <Text style={styles.addressTitle}>Delivery Address</Text>
         <Text style={styles.address}>2nd Door Emi, Carnation St., Sunflower Village, Brgy. Garden</Text>
@@ -31,7 +33,6 @@ const OrderScreen = ({ navigation }) => {
           </TouchableOpacity>
         </View>
       </View>
-      <View style={styles.container}>
       <FlatList
         data={cart}
         keyExtractor={(item) => item.id}
@@ -41,15 +42,16 @@ const OrderScreen = ({ navigation }) => {
           />
         )}
       />
-      </View>
       <OrderSummary
         price={totalPrice}
         deliveryFee={deliveryFee}
+        discount={discount}
         total={totalPayment}
       />
       <TouchableOpacity style={styles.placeOrderButton} onPress={handlePlaceOrder}>
         <Text style={styles.placeOrderText}>Place Order</Text>
       </TouchableOpacity>
+      </View>
     </View>
   );
 };
@@ -103,7 +105,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#22A45D',
     padding: 16,
     borderRadius: 8,
-    margin: 16,
+    margin: 12,
     alignItems: 'center',
   },
   placeOrderText: {
