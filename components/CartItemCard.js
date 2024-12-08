@@ -1,17 +1,18 @@
-import React, { useState } from 'react';
+import React, { useContext } from 'react';
 import { View, Text, Image, TouchableOpacity, StyleSheet } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import { CartContext } from '../store/cart-context';
 
 const CartItemCard = ({ product }) => {
-  const [quantity, setQuantity] = useState(1);
+  const { updateQuantity } = useContext(CartContext);
 
   const handleIncrease = () => {
-    setQuantity(quantity + 1);
+    updateQuantity(product.id, product.quantity + 1);
   };
 
   const handleDecrease = () => {
-    if (quantity > 1) {
-      setQuantity(quantity - 1);
+    if (product.quantity > 1) {
+      updateQuantity(product.id, product.quantity - 1);
     }
   };
 
@@ -26,7 +27,7 @@ const CartItemCard = ({ product }) => {
         <TouchableOpacity onPress={handleDecrease}>
           <Ionicons name="remove-circle-outline" size={24} color="#22A45D" />
         </TouchableOpacity>
-        <Text style={styles.quantity}>{quantity}</Text>
+        <Text style={styles.quantity}>{product.quantity}</Text>
         <TouchableOpacity onPress={handleIncrease}>
           <Ionicons name="add-circle-outline" size={24} color="#22A45D" />
         </TouchableOpacity>
@@ -47,8 +48,8 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.1,
     shadowRadius: 10,
     shadowOffset: { width: 0, height: 5 },
-    height: 100, // Half the height of the original ProductCard
-    width: '100%', // Double the width of the original ProductCard
+    height: 100,
+    width: '100%',
   },
   image: {
     width: 100,
